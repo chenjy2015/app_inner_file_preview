@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">FilePreviewApplication</string>
+
+    <string name="video">Videos</string>
+    <string name="camera">Camera</string>
+    <string name="shortcut">Screenshots</string>
+    <string name="wechat">Wechat</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="other">Others</string>
+    <string name="input_search_key">Please enter the search content</string>
+
+    <string name="file_list">File List</string>
+    <string name="local_video">Video</string>
+    <string name="local_picture">Graph</string>
+    <string name="local_text">Document</string>
+    <string name="player">player</string>
+    <string name="phone_selected">已选择%d张照片</string>
+    <string name="selector_cancel">Cancel</string>
+    <string name="toast_pick_file_error">Unable to pick file. Check status of file manager.</string>
+
+</resources>

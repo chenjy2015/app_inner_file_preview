@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:banner_indicator_marginBottom="16dp"
+        app:banner_indicator_normal_color="@color/white"
+        app:banner_indicator_normal_width="16dp"
+        app:banner_indicator_selected_color="@color/purple_200"
+        app:banner_indicator_selected_width="16dp"
+        app:banner_indicator_space="6dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".activity.ImagePreviewActivity" />
+
+
+</layout>
