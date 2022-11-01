@@ -3,13 +3,18 @@ package com.filepreview.application.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.http.SslError;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 
@@ -47,12 +52,13 @@ public class BrowserActivity extends BaseActivity<ActivityBrowserBinding> {
     @Override
     public void init() {
         WebSettings webSettings = mBinding.web.getSettings();
-        webSettings.setJavaScriptEnabled(true);
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setDisplayZoomControls(false);
+        webSettings.setDomStorageEnabled(true);
         webSettings.setJavaScriptEnabled(true);
         webSettings.setAllowFileAccess(true);
+        webSettings.setAllowContentAccess(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setSupportZoom(true);
         webSettings.setLoadWithOverviewMode(true);
@@ -61,17 +67,34 @@ public class BrowserActivity extends BaseActivity<ActivityBrowserBinding> {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
+                Log.d("BrowserActivity","newProgress : " + newProgress);
                 mHandler.sendEmptyMessageDelayed(newProgress, 500);
+            }
+        });
+
+        mBinding.web.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return false;
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                super.onReceivedSslError(view, handler, error);
+                Log.d("BrowserActivity","onReceivedSslError error : " + error);
             }
         });
 
         mWebUrl = getIntent().getStringExtra(ConstValue.BROWSER_URL);
         mHtmlContent = getIntent().getStringExtra(ConstValue.HTML_CONTENT);
+        Log.d("BrowserActivity", "mWebUrl : " + mWebUrl);
+        Log.d("BrowserActivity", "mHtmlContent : " + mHtmlContent);
         if (mWebUrl != null) {
             mBinding.web.loadUrl(mWebUrl);
         } else {
             mBinding.web.loadDataWithBaseURL(null, mHtmlContent, "text/html", "utf-8", null);
         }
+//        mBinding.web.loadUrl("file:///android_asset/privacy_policy_zh.html");
     }
 
     @Override

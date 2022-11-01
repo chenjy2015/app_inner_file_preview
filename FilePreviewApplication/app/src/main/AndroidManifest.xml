@@ -56,7 +56,7 @@
         <activity android:name=".activity.ImagePreviewActivity" />
         <activity android:name=".activity.BrowserActivity" />
         <activity android:name=".activity.PDFPreviewActivity" />
-        <activity android:name=".activity.TxtActivity"/>
+        <activity android:name=".activity.TxtActivity" />
 
     </application>
 

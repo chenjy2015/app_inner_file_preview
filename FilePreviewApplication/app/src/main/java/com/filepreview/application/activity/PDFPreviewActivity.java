@@ -26,7 +26,6 @@ import com.github.barteksc.pdfviewer.util.FitPolicy;
 import com.shockwave.pdfium.PdfDocument;
 
 import java.io.File;
-import java.lang.reflect.Field;
 import java.util.List;
 
 public class PDFPreviewActivity extends BaseActivity<ActivityPdfpreviewBinding> implements OnPageChangeListener, OnLoadCompleteListener,

@@ -1,6 +1,7 @@
 package com.filepreview.application.util;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 import com.filepreview.application.activity.BrowserActivity;
@@ -34,25 +35,39 @@ public class PreViewUtil {
         if (MediaFileUtil.isTextFileType(type.fileType)) {
             if (Objects.requireNonNull(MediaFileUtil.getFileType(file.getPath())).fileType == MediaFileUtil.FILE_TYPE_HTML) {
                 //html
-                BrowserActivity.launch(context, file.getPath());
+                Log.d("html", file.getPath());
+                BrowserActivity.launch(context, getFileLoadHead() + file.getPath());
             } else if (Objects.requireNonNull(MediaFileUtil.getFileType(file.getPath())).fileType == MediaFileUtil.FILE_TYPE_PDF) {
                 //pdf
+                Log.d("pdf", file.getPath());
                 PDFPreviewActivity.launch(context, file.getPath());
             } else if (MediaFileUtil.isExcelFileType(type.fileType)) {
                 //excel
                 String htmlPath = ExcelToHtml.readExcelToHtml(file.getPath());
                 Log.d("ExcelToHtml", htmlPath);
-                BrowserActivity.launchHtml(context, htmlPath);
+                BrowserActivity.launchHtml(context, getFileLoadHead() + htmlPath);
             } else if (MediaFileUtil.isWordFileType(type.fileType)) {
                 //word
                 WordToHtml wordToHtml = new WordToHtml(file);
                 Log.d("wordToHtml", wordToHtml.getContent());
-                BrowserActivity.launch(context, wordToHtml.htmlPath);
+                BrowserActivity.launch(context, getFileLoadHead() + wordToHtml.htmlPath);
             } else if (type.fileType == MediaFileUtil.FILE_TYPE_TXT) {
-                Log.d("Txt", file.getName());
-                BrowserActivity.launch(context, file.getPath());
+                Log.d("Txt", file.getPath());
+                BrowserActivity.launch(context, getFileLoadHead() + file.getPath());
 //                TxtActivity.launch(context, FileUtil.readTxtFile(file.getPath()));
             }
         }
+    }
+
+    /**
+     * note : just use by html,excel,doc filetype
+     * the pdf file has special invoke
+     * @return
+     */
+    private static String getFileLoadHead() {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) {
+            return "file://";
+        }
+        return "";
     }
 }

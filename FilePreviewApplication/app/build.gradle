@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId "com.filepreview.application"
-        minSdkVersion 19
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode getVersionCode(APP_VERSION)
         versionName getVersionName(APP_VERSION)
@@ -25,7 +25,7 @@ android {
         multiDexEnabled true
 
         ndk {
-            abiFilters 'armeabi-v7a'
+            abiFilters 'armeabi-v7a', 'x86'
         }
     }
 
@@ -110,15 +110,16 @@ dependencies {
     implementation 'com.bm.photoview:library:1.4.1'
 
     //-------------office-------------------
-    implementation 'org.apache.poi:poi:3.17'
-    // Excel XLS
-    implementation 'org.apache.poi:poi-ooxml:3.17'
-    // Excel XLSX DOCX
-    implementation 'org.apache.poi:poi-scratchpad:3.17'
-    // Word DOC
-    implementation 'org.apache.poi:poi-ooxml-schemas:3.17'
-    implementation files('libs/xdocreport-2.0.1.jar')
-    implementation files('libs/rt.jar')
+    //this jar all download in libs filedir
+//    implementation 'org.apache.poi:poi:3.17'
+//    // Excel XLS
+//    implementation 'org.apache.poi:poi-ooxml:3.17'
+//    // Excel XLSX DOCX
+//    implementation 'org.apache.poi:poi-scratchpad:3.17'
+//    // Word DOC
+//    implementation 'org.apache.poi:poi-ooxml-schemas:3.17'
+//    implementation files('libs/xdocreport-2.0.1.jar')
+//    implementation files('libs/rt.jar')
     //项目要使用iText
     implementation 'com.itextpdf:itextpdf:5.5.13.1'
     implementation 'com.itextpdf.tool:xmlworker:5.5.11'
@@ -128,7 +129,6 @@ dependencies {
     implementation 'com.itextpdf:itext-asian:5.2.0'
     implementation 'org.jsoup:jsoup:1.11.3'
     //-------------office-------------------
-
 
 
 }

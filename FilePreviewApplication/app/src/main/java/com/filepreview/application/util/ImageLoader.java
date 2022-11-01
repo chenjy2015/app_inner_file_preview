@@ -14,7 +14,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
 
-
 import com.filepreview.application.R;
 import com.filepreview.application.bean.FileVO;
 import com.filepreview.application.services.AlbumThreadPoolExecutor;
@@ -160,6 +159,7 @@ public class ImageLoader {
             return;
         }
         File root = Environment.getExternalStorageDirectory();
+//        File root = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "Download" + File.separator);
         ArrayList<FileVO> fileVOS = new ArrayList<>();
         AlbumThreadPoolExecutor executor = AlbumThreadPoolExecutor.getDefaultThreadPoolExecutor();
         executor.execute(() -> {
@@ -213,6 +213,8 @@ public class ImageLoader {
                 return R.drawable.ic_pdf;
             } else if (fileType.fileType == MediaFileUtil.FILE_TYPE_TXT) {
                 return R.drawable.ic_txt;
+            } else if (fileType.fileType == MediaFileUtil.FILE_TYPE_HTM || fileType.fileType == MediaFileUtil.FILE_TYPE_HTML) {
+                return R.drawable.ic_html;
             }
         }
         return R.drawable.ic_unknow;

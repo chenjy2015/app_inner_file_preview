@@ -110,7 +110,7 @@ public class DocumentListAdapter extends BaseFileListAdapter<AdapterDocumentList
 
     @Override
     public void onItemClick(FileVO o, int position) {
-        VibratorUtil.getInstance().vibrate();
+//        VibratorUtil.getInstance().vibrate();
         PreViewUtil.open(mContext, o.getFile());
     }
 

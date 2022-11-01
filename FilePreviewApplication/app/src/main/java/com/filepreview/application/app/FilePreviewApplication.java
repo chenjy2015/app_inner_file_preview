@@ -1,9 +1,9 @@
 package com.filepreview.application.app;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.filepreview.application.util.VibratorUtil;
-
 
 /**
  * application
@@ -13,8 +13,6 @@ import com.filepreview.application.util.VibratorUtil;
  * @since 2022/10/21
  */
 public class FilePreviewApplication extends Application {
-
-    public static String TAG = FilePreviewApplication.class.getSimpleName();
 
     @Override
     public void onCreate() {
